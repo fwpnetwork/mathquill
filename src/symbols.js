@@ -27,7 +27,7 @@ var VanillaSymbol = P(Symbol, function(_, _super) {
 });
 
 // use '\ ' for spaces
-CharCmds[' '] = bind(VanillaSymbol, '\ ', ' ');
+CharCmds[' '] = bind(VanillaSymbol, '\\ ', ' ');
 
 LatexCmds.prime = CharCmds["'"] = bind(VanillaSymbol, "'", '&prime;');
 
