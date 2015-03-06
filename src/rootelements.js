@@ -223,14 +223,7 @@ var RootMathBlock = P(MathBlock, function(_, _super) {
     // Tab or Esc -> go one block right if it exists, else escape right.
     case 'Esc':
     case 'Tab':
-    case 'Spacebar':
-      var parent = this.cursor.parent;
-      // cursor is in root editable, continue default
-      if (parent === this.cursor.root) {
-        if (key === 'Spacebar') e.preventDefault();
-        return;
-      }
-
+// remove case 'Spacebar' to allow spaces in input
       this.cursor.prepareMove();
       if (parent[R]) {
         // go one block right
@@ -240,7 +233,9 @@ var RootMathBlock = P(MathBlock, function(_, _super) {
         this.cursor.insRightOf(parent.parent);
       }
       break;
-
+    case 'Spacebar':
+      // return to allow onKeyPress to bubble
+      return;
     // Shift-Tab -> go one block left if it exists, else escape left.
     case 'Shift-Tab':
     case 'Shift-Esc':
